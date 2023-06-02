@@ -2,20 +2,17 @@ const express = require("express");
 const app = express();
 
 const cors = require("cors");
-
+require("dotenv").config()
 const port = process.env.PORT || 5000;
-const data = require('./sample.json');
+
 // middleware
 app.use(cors());
 app.use(express.json());
 
 
-//tanzimnahid6
-
-//iHVG5Qml9EspzQvD
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
-const uri = "mongodb+srv://tanzimnahid6:iHVG5Qml9EspzQvD@cluster0.3wyvi0w.mongodb.net/?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.3wyvi0w.mongodb.net/?retryWrites=true&w=majority`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -102,9 +99,6 @@ run().catch(console.dir);
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
-app.get('/sample',(req,res)=>{
-    res.send(data)
-})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
