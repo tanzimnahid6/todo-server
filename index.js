@@ -39,12 +39,20 @@ async function run() {
 
 
     //get task by user wise===============================
-    app.get('/todo/:email',async (req,res)=>{
-      const email =req.params.email
-      const query = { email: email};
-      const cursor = await todoCollection.find(query).toArray()
+    app.get('/todo',async (req,res)=>{
+  
+     
+      const cursor = await todoCollection.find().toArray()
       res.send(cursor)
     })
+
+
+    // app.get('/todo/:email',async (req,res)=>{
+    //   const email =req.params.email
+    //   const query = { email: email};
+    //   const cursor = await todoCollection.find(query).toArray()
+    //   res.send(cursor)
+    // })
 
     //post single data==========================================
     app.post('/todo',async (req,res)=>{
